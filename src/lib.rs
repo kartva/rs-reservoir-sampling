@@ -8,7 +8,9 @@
 //! Functions take:
 //! - An iterator of generic type T, with no constraints which serves as a stream of data to sample.
 //! - Mutable array slice to store sampled data
-//! - RNG 
+//! <br>
+//! By default, functions use `rand::thread_rng` to provide RNG.
+//! To use your own RNG which implements `rand::RNG`, use functions in `reservoir_sampling::core`
 pub mod core;
 
 pub mod unweighted {
