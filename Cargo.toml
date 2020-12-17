@@ -11,7 +11,11 @@ license = "MIT OR Apache-2.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[features]
+# TODO: weighted = [binary-heap-plus]
+
 [dependencies]
 rand = "0.7.*"
-binary-heap-plus = "0.4.0"
 compare = "0.1.0"
+
+# TODO: binary-heap-plus = { version = "0.4.*", optional = true}
