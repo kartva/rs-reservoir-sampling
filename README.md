@@ -10,4 +10,7 @@ Functions take:
 - Mutable array slice (`&mut [T]`) to store sampled data
 
 By default, functions use `rand::thread_rng` to provide RNG.
-To use your own RNG which implements `rand::RNG`, use functions in `reservoir_sampling::core`
+To use your own RNG which implements `rand::RNG`, use functions in `reservoir_sampling::core`.
+
+# Future development
+Plan to implement weighted reservoir sampling as well/
