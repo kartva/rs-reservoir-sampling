@@ -48,14 +48,26 @@ pub mod weighted {
 */
 
 
+
 pub mod unweighted {
     use rand::{Rng, distributions::{Uniform, Distribution}};
     use std::iter::Iterator;
 
+    fn fill <I, T> (iter: &mut I, sample: &mut [T]) -> Option<()>
+    where
+        I: Iterator<Item=T>,
+    {
+        for element in sample.iter_mut() {
+            *element = match iter.next() {Some(n) => n, None => return None};
+        }
+
+        Some(())
+    }
+
     /// An implementation of Algorithm `L` (https://en.wikipedia.org/wiki/Reservoir_sampling#An_optimal_algorithm)
     /// # Parameters:
     /// - Type implementing `std::iter::Iterator` as *source*,
-    /// - Mutable array slice (i.e. `&mut [T]`) as *sample array*
+    /// - Mutable array slice (i.e. `&mut [T]`) as *sample array (i.e. where sampled data is stored)*
     /// - Type implementing `rand::Rng` for random number generation.
     /// In case iterator yields less than sample amount, sample will be filled as much as possible, and returned.
     
@@ -65,8 +77,9 @@ pub mod unweighted {
         I: Iterator<Item=T>,
     {
         // Fill the sample array from the reservoir
-        for element in sample.iter_mut() {
-            *element = match iter.next() {Some(n) => n, None => return};
+        // And return if iterator has been already exhausted.
+        if let None = fill (&mut iter, sample) {
+            return;
         }
 
         let random_index = Uniform::from(0..sample.len());
@@ -89,7 +102,7 @@ pub mod unweighted {
     /// An implementation of algorithm `R` (https://en.wikipedia.org/wiki/Reservoir_sampling#Simple_algorithm)
     /// # Parameters:
     /// - Type implementing `std::iter::Iterator` as *source*,
-    /// - Mutable array slice (i.e. `&mut [T]`) as *sample array*
+    /// - Mutable array slice (i.e. `&mut [T]`) as *sample array (i.e. where sampled data is stored)*
     /// - Type implementing `rand::Rng` for random number generation.
     /// In case iterator yields less than sample amount, sample will be filled as much as possible, and returned.
 
@@ -99,8 +112,9 @@ pub mod unweighted {
         I: Iterator<Item=T>,
     {
         // Fill the sample array from the reservoir
-        for element in sample.iter_mut() {
-            *element = match iter.next() {Some(n) => n, None => return};
+        // And return if iterator has been already exhausted.
+        if let None = fill (&mut iter, sample) {
+            return;
         }
 
         let random_index = Uniform::from(0..sample.len());
