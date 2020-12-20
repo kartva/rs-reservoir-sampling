@@ -35,7 +35,7 @@ pub mod unweighted {
         let mut rng = thread_rng();
         unweighted::l(stream, sample, &mut rng);
     }
-
+/*
     /// An implementation of algorithm `R` (https://en.wikipedia.org/wiki/Reservoir_sampling#Simple_algorithm)
     /// # Parameters:
     /// - Type implementing `std::iter::Iterator` as *source*,
@@ -49,5 +49,5 @@ pub mod unweighted {
     {
         let mut rng = thread_rng();
         unweighted::r(stream, sample, &mut rng);
-    }
+    }*/
 }

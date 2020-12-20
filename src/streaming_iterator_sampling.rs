@@ -86,7 +86,7 @@ pub mod core {
                 }
             };
         }
-
+/*
         /// An implementation of algorithm `R` (https://en.wikipedia.org/wiki/Reservoir_sampling#Simple_algorithm)
         /// # Parameters:
         /// - Type implementing `std::iter::Iterator` as *source*,
@@ -114,6 +114,6 @@ pub mod core {
                     sample[random_number] = ele;
                 }
             };
-        }
+        }*/
     }
 }

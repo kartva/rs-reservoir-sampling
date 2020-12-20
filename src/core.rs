@@ -98,7 +98,7 @@ pub mod unweighted {
             }
         };
     }
-
+/*
     /// An implementation of algorithm `R` (https://en.wikipedia.org/wiki/Reservoir_sampling#Simple_algorithm)
     /// # Parameters:
     /// - Type implementing `std::iter::Iterator` as *source*,
@@ -126,5 +126,5 @@ pub mod unweighted {
                 sample[random_number] = ele;
             }
         };
-    }
+    }*/
 }
