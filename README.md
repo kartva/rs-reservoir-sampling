@@ -5,6 +5,9 @@ unknown or very large.
 Read this article for more information: https://en.wikipedia.org/wiki/Reservoir_sampling
 All algorithms implemented here have been taken from this article only.
 
+# Note:
+- `Algorithm R` is currently yielding broken values, refrain from using.
+
 # Features:
 - Support for `streaming-iterator::StreamingIterator` type.
 
