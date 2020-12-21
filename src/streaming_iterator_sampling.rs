@@ -1,7 +1,6 @@
-use streaming_iterator::StreamingIterator;
-
 /// TODO: Reduce code duplication!
 pub mod unweighted {
+    use streaming_iterator::StreamingIterator;
     use super::core::unweighted;
     use rand::thread_rng;
     
@@ -39,6 +38,8 @@ pub mod unweighted {
 
 
 pub mod core {
+    use streaming_iterator::StreamingIterator;
+    
     pub mod unweighted {
         fn fill <I, T> (iter: &mut I, sample: &mut [T]) -> Option<()>
         where
