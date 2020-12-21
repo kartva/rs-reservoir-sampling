@@ -90,11 +90,12 @@ pub mod unweighted {
         loop {
             i += (rng.gen::<f64>().ln() / (1.0 - w).ln()).floor() as usize + 1;
 
-            if let Some(n) = iter.nth(i) {
-                sample[random_index.sample(rng)] = n;
-                w *= (rng.gen::<f64>().ln() / sample.len() as f64).exp();
-            } else {
-                break;
+            match iter.nth(i) {
+                Some(n) => {
+                    sample[random_index.sample(rng)] = n;
+                    w *= (rng.gen::<f64>().ln() / sample.len() as f64).exp();
+                }
+                None => break,
             }
         };
     }
