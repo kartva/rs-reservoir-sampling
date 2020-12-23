@@ -2,13 +2,15 @@ pub fn mean(arr: &[usize]) -> usize {
     arr.iter().copied().fold(0, |acc, curr| curr + acc) / arr.len()
 }
 
+/*
+// Will be useful for future testing
 pub fn sd(arr: &[usize]) -> usize {
     let arr_mean = mean(arr);
 
     let mut variance: Vec<usize> = arr.iter().copied().map(|n| n - arr_mean).map(|n| n * n).collect();
     mean(&mut variance[..])
 }
-
+*/
 
 pub mod unweighted {
     use super::mean;
