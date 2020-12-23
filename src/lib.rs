@@ -4,20 +4,21 @@
 //! Read this article for more information: https://en.wikipedia.org/wiki/Reservoir_sampling
 //! All algorithms implemented here have been taken from this article only.
 
+//! # Features:
+//! - Unweighted reservoir sampling
+//! - Weighted reservoir sampling
 //! # API Design
 //! Functions take:
 //! - An iterator of generic type T, with no constraints which serves as a stream of data to sample.
 //! - Mutable array slice to store sampled data
 //! <br>
 //! By default, functions use `rand::thread_rng` to provide RNG.
-//! To use your own RNG which implements `rand::RNG`, use functions in `reservoir_sampling::core`
-pub mod core;
+//! To use your own RNG which implements `rand::RNG`, use functions in `core` module of each feature.
 
-#[cfg(feature = "streaming_iterator_support",)]
-pub mod streaming_iterator_sampling;
-
+#[cfg(feature = "unweighted")]
 pub mod unweighted {
-    use crate::core::unweighted;
+    pub mod core;
+
     use rand::thread_rng;
     
     /// An implementation of Algorithm `L` (https://en.wikipedia.org/wiki/Reservoir_sampling#An_optimal_algorithm)
@@ -33,9 +34,9 @@ pub mod unweighted {
         I: Iterator<Item=T>,
     {
         let mut rng = thread_rng();
-        unweighted::l(stream, sample, &mut rng);
+        core::l(stream, sample, &mut rng);
     }
-/*
+
     /// An implementation of algorithm `R` (https://en.wikipedia.org/wiki/Reservoir_sampling#Simple_algorithm)
     /// # Parameters:
     /// - Type implementing `std::iter::Iterator` as *source*,
@@ -48,6 +49,6 @@ pub mod unweighted {
         I: Iterator<Item=T>,
     {
         let mut rng = thread_rng();
-        unweighted::r(stream, sample, &mut rng);
-    }*/
+        core::r(stream, sample, &mut rng);
+    }
 }

@@ -5,8 +5,17 @@ unknown or very large.
 Read this article for more information: https://en.wikipedia.org/wiki/Reservoir_sampling
 All algorithms implemented here have been taken from this article only.
 
-# Note:
-- `Algorithm R` is currently yielding broken values, refrain from using.
+# Quickstart:
+```rust
+use reservoir_sampling::unweighted::{l, /*r*/};
+
+fn main () {
+    let mut sampled_arr = vec![0usize; 10];
+
+    l(0usize..100, sampled_arr.as_mut_slice());
+    println!("Sampled array: {:?}", sampled_arr);
+}
+```
 
 # Features:
 - Support for `streaming-iterator::StreamingIterator` type.
