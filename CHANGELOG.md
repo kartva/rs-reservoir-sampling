@@ -1,3 +1,6 @@
+# v 0.3.1
+- Corrected README
+
 # v 0.3.0
 - Removed `streaming-iterator` 🤦‍
 - Fixed algorithm R (`unweighted::r`) and added back to unweighted API
