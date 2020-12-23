@@ -30,7 +30,7 @@ where
         return;
     }
 
-    let random_index = Uniform::from(0..sample.len());
+    let random_index = Uniform::new(0, sample.len());
 
     let mut w: f64 = (rng.gen::<f64>().ln() / sample.len() as f64).exp();
     let mut i = sample.len();
