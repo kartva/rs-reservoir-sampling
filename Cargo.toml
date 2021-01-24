@@ -4,7 +4,7 @@ description = "Implementations of a variety of algorithms for reservoir sampling
 keywords = ["random", "rng", "streaming"]
 repository = "https://github.com/DesmondWillowbrook/rs-reservoir-sampling"
 categories = ["algorithms"]
-version = "0.3.1"
+version = "0.3.2"
 authors = ["Kartavya Vashishtha <kartavya0703@gmail.com>"]
 edition = "2018"
 license = "MIT OR Apache-2.0"
@@ -17,9 +17,11 @@ default = [
 ]
 
 unweighted = []
-#weighted = ["binary-heap-plus"]
 
 [dependencies]
 rand = "^0.8.0"
+
+[dev-dependencies]
+reservoir-sampling = {version = "0.3.2", features = ["weighted", "unweighted"]}
 
 # TODO: binary-heap-plus = { version = "0.4.*", optional = true}

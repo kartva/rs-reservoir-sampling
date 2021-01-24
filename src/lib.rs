@@ -1,20 +1,3 @@
-//! Crate implementing reservoir sampling, a method for getting random samples
-//! from a source in a single pass. Useful in situations where size of source is
-//! unknown or very large.
-//! Read this article for more information: https://en.wikipedia.org/wiki/Reservoir_sampling
-//! All algorithms implemented here have been taken from this article only.
-
-//! # Features:
-//! - Unweighted reservoir sampling
-//! - Weighted reservoir sampling
-//! # API Design
-//! Functions take:
-//! - An iterator of generic type T, with no constraints which serves as a stream of data to sample.
-//! - Mutable array slice to store sampled data
-//! <br>
-//! By default, functions use `rand::thread_rng` to provide RNG.
-//! To use your own RNG which implements `rand::RNG`, use functions in `core` module of each feature.
-
 #[cfg(feature = "unweighted")]
 pub mod unweighted {
     pub mod core;
@@ -50,5 +33,28 @@ pub mod unweighted {
     {
         let mut rng = thread_rng();
         core::r(stream, sample, &mut rng);
+    }
+}
+
+//#[cfg(feature = "weighted")]
+pub mod weighted {
+    pub mod core;
+
+    use rand::thread_rng;
+    use core::WeightedItem;
+
+    /// An implementation of Algorithm `A-Res` (https://en.wikipedia.org/wiki/Reservoir_sampling#Algorithm_A-Res)
+    /// # Parameters:
+    /// - Type implementing `std::iter::Iterator` as *source*,
+    /// - Mutable array slice (i.e. `&mut [T]`) as *sample array*
+    /// - Type implementing `rand::Rng` for random number generation.
+    /// In case iterator yields less than sample amount, sample will be filled as much as possible, and returned.
+
+    pub fn a_res <I, T> (stream: I, sample: &mut [WeightedItem<T>])
+    where
+        I: Iterator<Item=WeightedItem<T>>
+    {
+        let mut rng = thread_rng();
+        core::a_res(stream, sample, &mut rng);
     }
 }

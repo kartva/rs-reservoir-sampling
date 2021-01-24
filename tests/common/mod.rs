@@ -30,7 +30,31 @@ pub mod unweighted {
         }
 
         todo!("Implement tests for randomness, \
-               currently panic so human can see \
+               currently panics so human can see \
+               results and verify that results \
+               look sort-of random")
+    }
+}
+
+pub mod weighted {
+    use super::mean;
+    use std::ops::Range;
+
+    /// TODO: Implement _real_ tests for randomness
+    pub fn run (max_tests: usize, f: fn(Range<usize>, &mut [usize]) ) {
+        let mut sampled_arr = vec![0usize; 10];
+        let mut results_vec = Vec::with_capacity(max_tests);
+
+        f(0usize..100, sampled_arr.as_mut_slice());
+        results_vec.push(mean(sampled_arr.as_slice()));
+
+        for _ in 0..max_tests {
+            f(0usize..100, sampled_arr.as_mut_slice());
+            println!("{:?}", sampled_arr.as_slice());
+        }
+
+        todo!("Implement tests for randomness, \
+               currently panics so human can see \
                results and verify that results \
                look sort-of random")
     }

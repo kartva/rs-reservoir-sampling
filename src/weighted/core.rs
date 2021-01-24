@@ -1,22 +1,15 @@
-/*
 use rand::{Rng};
-use std::{iter::Iterator, ops::Div};
-use binary_heap_plus::{BinaryHeap, MinComparator};
-use compare::Compare;
+use std::iter::Iterator;
+use std::collections::BinaryHeap;
 
-pub trait WeightedItem {
-    type Item;
-    type Weight: Div;
-
-    fn curr(self) -> Self::Item;
-
-    fn weight(self) -> Self::Weight;
-}
-
-impl<W: WeightedItem> Compare<W> for W
+pub struct WeightedItem <T, W>
+where W: PartialOrd + ops::Div + ops::Neg
 {
-
+    item: T,
+    weight: W, 
 }
+
+
 
 /// An implementation of Algorithm `A-Res` (https://en.wikipedia.org/wiki/Reservoir_sampling#Algorithm_A-Res)
 /// # Parameters:
@@ -28,19 +21,21 @@ impl<W: WeightedItem> Compare<W> for W
 pub fn a_res <R, W, I, T>(mut iter: I, sample_size: usize, rng: &mut R) -> Vec<T>
 where
     R: Rng + ?Sized,
-    I: Iterator<Item=W>,
-    W: WeightedItem<Item=T> + Compare<W> + Ord,
+    I: Iterator<Item=WeightedItem<T, W>>,
+    W: WeightedItem<T, W>,
 {
-    let mut heap: BinaryHeap<W, MinComparator> = BinaryHeap::with_capacity_min(sample_size);
+    let mut heap = BinaryHeap::with_capacity (sample_size);
 
     for ele in iter {
-        let r = rng.gen::<f64>().powf(1.0 / ele.weight());
+        let r = rng.gen::<f64>().powf(1.0 / ele.weight);
 
         if heap.len() < sample_size {
-            heap.push()
+            heap.push(WeightedItem {item: ele.item, weight: -ele.weight});
+        } else if r > heap.top().weight {
+            heap.pop();
+            heap.push(WeightedItem {item: ele.item, weight: -ele.weight});
         }
     }
 
     heap.into_vec()
 }
-*/
