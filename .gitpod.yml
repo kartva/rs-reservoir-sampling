@@ -3,7 +3,10 @@ image: gitpod/workspace-full
 tasks:
   - init: cargo build
     command: cargo watch -x run
+<<<<<<< HEAD
 
 vscode:
   extensions:
     - github.vscode-pull-request-github@0.22.0:vEebOoYJNqUcIPdIZwC9YA==
+=======
+>>>>>>> 0e5fa39620acf5ac5b157957ddfd2972e1446646
