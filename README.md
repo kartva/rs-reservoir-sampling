@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/DesmondWillowbrook/rs-reservoir-sampling)
+
 # reservoir-sampling
 Crate implementing reservoir sampling, a method for getting random samples
 from a source in a single pass. Useful in situations where size of source is
