@@ -1,5 +1,5 @@
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?style=flat-square)](https://gitpod.io/#https://github.com/DesmondWillowbrook/rs-reservoir-sampling)
-[![Crates.io](https://img.shields.io/crates/v/reservoir-sampling?style=flat-square)](https://crates.io/crates/reservoir-sampling)]
+[![Crates.io](https://img.shields.io/crates/v/reservoir-sampling?style=flat-square)](https://crates.io/crates/reservoir-sampling)
 
 # reservoir-sampling
 Crate implementing reservoir sampling, a method for getting random samples
