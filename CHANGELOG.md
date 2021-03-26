@@ -1,3 +1,8 @@
+# v 0.4.0
+- `weighted` MVP:
+	- Added `WeightedItem` trait which is used by `weighted` algorithms to sample.
+	- Added `weighted` algorithm `a_res`
+
 # v 0.3.1
 - Corrected README
 
