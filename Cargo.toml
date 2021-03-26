@@ -13,10 +13,13 @@ license = "MIT OR Apache-2.0"
 
 [features]
 default = [
-    "unweighted"
+    "unweighted",
+    "weighted"
 ]
 
 unweighted = []
+
+weighted = []
 
 [dependencies]
 rand = "^0.8.0"

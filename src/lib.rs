@@ -36,25 +36,25 @@ pub mod unweighted {
     }
 }
 
-//#[cfg(feature = "weighted")]
+#[cfg(feature = "weighted")]
 pub mod weighted {
     pub mod core;
 
     use rand::thread_rng;
-    use core::WeightedItem;
+    use self::core::WeightedItem;
 
     /// An implementation of Algorithm `A-Res` (https://en.wikipedia.org/wiki/Reservoir_sampling#Algorithm_A-Res)
     /// # Parameters:
-    /// - Type implementing `std::iter::Iterator` as *source*,
-    /// - Mutable array slice (i.e. `&mut [T]`) as *sample array*
-    /// - Type implementing `rand::Rng` for random number generation.
+    /// - Iterator of `core::WeightedItem` as *source*,
+    /// - `sample_len`, the size of the sampled reservoir.
+    /// Returns a `Vec` of length `sample_len`
     /// In case iterator yields less than sample amount, sample will be filled as much as possible, and returned.
 
-    pub fn a_res <I, T> (stream: I, sample: &mut [WeightedItem<T>])
+    pub fn a_res <I, T> (stream: I, sample_len: usize) -> Vec<T>
     where
         I: Iterator<Item=WeightedItem<T>>
     {
         let mut rng = thread_rng();
-        core::a_res(stream, sample, &mut rng);
+        core::a_res(stream, sample_len, &mut rng)
     }
 }
