@@ -1,3 +1,6 @@
+# v 0.4.2
+- License change to `Unlicense`
+
 # v 0.4.1
 - README correction 🤦‍
 
