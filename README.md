@@ -6,6 +6,7 @@ Crate implementing reservoir sampling, a method for getting random samples
 from a source in a single pass. Useful in situations where size of source is
 unknown or very large.
 Read this article for more information: https://en.wikipedia.org/wiki/Reservoir_sampling
+
 All algorithms implemented here have been taken from this article only.
 
 # Quickstart:
