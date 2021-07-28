@@ -38,6 +38,20 @@ pub mod unweighted {
 
 #[cfg(feature = "weighted")]
 pub mod weighted {
+    /*!
+    Provides weighted reservoir sampling, i.e. the
+    odds of a particular item occurring in the sampling
+    can be influenced.
+
+    Odds can be influenced via the `WeightedItem` struct,
+    which is a wrapper struct around your item and 
+    an associated weight which controls the frequency
+    of the item occurring in the resulting sampling.
+
+    The functions in this module take an iterator of `WeightedItem`,
+    so remember to wrap your types in that struct and then pass an iterator of them.
+    */
+
     pub mod core;
 
     use rand::thread_rng;

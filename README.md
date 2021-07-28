@@ -9,7 +9,10 @@ Read this article for more information: https://en.wikipedia.org/wiki/Reservoir_
 
 All algorithms implemented here have been taken from this article only.
 
-# Quickstart:
+---
+##### (This crate supports WASM)
+---
+# Quickstart
 ```rust
 use reservoir_sampling::unweighted::l;
 

@@ -4,7 +4,7 @@ description = "Implementations of a variety of algorithms for reservoir sampling
 keywords = ["random", "rng", "streaming"]
 repository = "https://github.com/DesmondWillowbrook/rs-reservoir-sampling"
 categories = ["algorithms"]
-version = "0.4.2"
+version = "0.5.1"
 authors = ["Kartavya Vashishtha <kartavya0703@gmail.com>"]
 edition = "2018"
 license = "Unlicense"
@@ -14,12 +14,21 @@ license = "Unlicense"
 [features]
 default = [
     "unweighted",
-    "weighted"
+    "weighted",
 ]
 
 unweighted = []
 
 weighted = []
 
-[dependencies]
-rand = "^0.8.*"
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+rand = "^0.8"
+
+[target.wasm32-unknown-unknown.dependencies]
+wasm-bindgen = {version = "^0.2"}
+rand = {version = "^0.8", features = ["getrandom"]}
+
+# Relying on Cargo's "feature unification" to get rand to use getrandom with "js" feature enabled
+# See: https://doc.rust-lang.org/cargo/reference/features.html#feature-unification
+
+getrandom = {version = "^0.2", features = ["js"]}
